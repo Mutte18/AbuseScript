@@ -38,7 +38,7 @@ def read_email():
                     print ('Subject : ' + email_subject + '\n')
             '''
             containsInfringement(msg)
-            print(msg)
+            #print(msg)
             print("################################################")
             # print("Connected successfully to mail")
 
@@ -51,20 +51,17 @@ def containsInfringement(mail):
     # print(mail)
     stringMail = str(mail)
 
-    regexp = re.compile('kalle')
-    if regexp.search(stringMail):
-        print("Contains infringement")
+    #infringementCheck = re.compile('(?:"Infringement|infringement|<infringement>|<Infringement>")\.trailingString')
+
+    infringementCheck = ["infringement", "Infringement", "<Infringement>", "<infringement>"]
+
+    if any(i in stringMail for i in infringementCheck):
+
+
+        print("CONTAINS INFRINGEMENT")
+        print(stringMail)
     else:
-        print("Nope")
-
-
-    # raw_email_string = mail.decode("utf-8")
-    # print(raw_email_string)
-
-    # b = email.message_from_string(mail)
-    # print(email['To'])
-    # print(email['From'])
-    # print(b)
+        print("Does not contain")
 
 
 """
@@ -78,7 +75,7 @@ else:
 
 def send_email():
     sender = GMAIL_USER
-    receiver = GMAIL_USER
+    receiver = 'mutte.wow@hotmail.com'
 
     message = """From: From person
     To: To Person
